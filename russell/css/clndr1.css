@@ -1,0 +1,115 @@
+/* 1. GLOBAL THEME VARIABLES - Edit here to change the look of the whole app */
+:root {
+  --primary-color: #4F52BA;
+  --header-bg: #A9A9A9;
+  --accent-color: #F2B33F;
+  --today-bg: rgba(97, 100, 193, 0.57);
+  --border-color: #D8D8D8;
+  --text-white: #ffffff;
+  --transition-speed: 0.3s ease;
+}
+
+/* 2. BASE UTILITIES */
+.noselect {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* 3. SMART FLEXBOX CONTROLS */
+.cal1 .clndr .clndr-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    background-color: var(--primary-color);
+    color: var(--text-white);
+    margin: 0;
+}
+
+.cal1 .clndr .clndr-controls .month {
+    flex: 1;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+.cal1 .clndr .clndr-controls .clndr-control-button {
+    cursor: pointer;
+    transition: color var(--transition-speed);
+}
+
+.cal1 .clndr .clndr-controls .clndr-control-button:hover {
+    color: var(--accent-color);
+}
+
+/* 4. DYNAMIC CALENDAR GRID */
+.cal1 .clndr .clndr-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.cal1 .clndr .clndr-table .header-days {
+    height: 45px;
+    background: var(--header-bg);
+}
+
+.cal1 .clndr .clndr-table .header-days .header-day {
+  vertical-align: middle;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  color: var(--text-white);
+}
+
+.cal1 .clndr .clndr-table tr .day {
+  border: 1px solid var(--border-color);
+  transition: background var(--transition-speed);
+}
+
+.cal1 .clndr .clndr-table tr .day:hover {
+  background: #f0f0f0;
+}
+
+.cal1 .clndr .clndr-table tr .day.today {
+  background: var(--today-bg);
+  color: var(--text-white);
+}
+
+/* 5. SMART PRINTING PROTOCOL */
+@media print {
+    /* Hide everything that isn't the actual report/invoice */
+    .sidebar, .cbp-spmenu, .header-section, .footer, .btn, .form-grids, .clndr-controls {
+        display: none !important;
+    }
+
+    /* Expand the content to fill the page */
+    #page-wrapper, .main-content {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        left: 0 !important;
+        background: #fff !important;
+    }
+
+    /* Ensure table borders are crisp for printing */
+    .table-bordered th, .table-bordered td {
+        border: 1px solid #333 !important;
+        color: #000 !important;
+    }
+
+    /* Remove shadows to save ink */
+    .widget-shadow {
+        box-shadow: none !important;
+        border: none !important;
+    }
+}
+
+/* 6. RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    .cal1 .clndr .clndr-table tr { height: 60px; }
+}
+
+@media (max-width: 480px) {
+    .cal1 .clndr .clndr-controls .month { font-size: 1.1em; }
+}
